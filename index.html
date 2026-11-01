@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./icon.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>哈基测速面板</title>
+    <meta name="keywords" content="网络面板,网络面板官网,网络测速,网速测试,ljxnet,Whoami,flowloss,流量消耗器,流量消耗,定向流量消耗">
+    <meta name="description" content="网络面板(NetworkPanel)是一个在线流量消耗器，可以测试您的网速，监测您的网络环境，提供丰富测试节点，并且长期维护更新">
+    <meta name="author" content="Whoami">
+    <meta name="color-scheme" content="light dark">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="网络面板"/>
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon-precomposed" href="./icon-fill.png">
+    <meta name="msapplication-TileImage" content="./icon-fill.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+    <meta name="theme-color" content="#e8f0fe">
+    <meta name="baidu-site-verification" content="codeva-WSnRITfckW" />
+    <meta name="baidu_union_verify" content="844e54539687a7613d24c288e42328a4">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <style>
+        body{
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        #app{
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e8f0fe 0%, #f5f0ff 25%, #fce4ec 50%, #e0f7fa 75%, #e8f5e9 100%);
+            background-attachment: fixed;
+        }
+        html.dark body{
+            background-color: #000000;
+        }
+        html.dark #app{
+            background: linear-gradient(135deg, #0a0e27 0%, #12082a 25%, #1a0a1e 50%, #0a1a1f 75%, #0a1a0e 100%);
+            background-attachment: fixed;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        html{
+            scrollbar-width: none;
+        }
+    </style>
+    <!--
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?25b770e160a55cf023c304174b63571f";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    -->
+    <!--
+    <script>
+        !function(p){"use strict";!function(t){var s=window,e=document,i=p,c="".concat("https:"===e.location.protocol?"https://":"http://","sdk.51.la/js-sdk-pro.min.js"),n=e.createElement("script"),r=e.getElementsByTagName("script")[0];n.type="text/javascript",n.setAttribute("charset","UTF-8"),n.async=!0,n.src=c,n.id="LA_COLLECT",i.d=n;var o=function(){s.LA.ids.push(i)};s.LA?s.LA.ids&&o():(s.LA=p,s.LA.ids=[],o()),r.parentNode.insertBefore(n,r)}()}({id:"3G2Vc20xpg3Ashoi",ck:"3G2Vc20xpg3Ashoi",autoTrack:true,hashMode:true});
+    </script>
+    -->
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+        var lastTouchEnd = 0
+        if (!!('ontouchstart' in window || navigator.maxTouchPoints)) {
+            document.documentElement.addEventListener(
+                'touchend',
+                function(event) {
+                    var now = Date.now()
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault()
+                    }
+                    lastTouchEnd = now
+                }, {
+                    passive: false
+                }
+            )
+        }
+        const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const classVal = document.getElementsByTagName('html')[0].classList;
+        // 主题初始化：优先使用用户手动保存的偏好（theme=light/dark），否则跟随系统
+        // 与 src/theme.ts 保持一致，尽早添加 dark 类避免页面闪烁
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark' || (storedTheme !== 'light' && darkModeQuery.matches)) {
+            classVal.add("dark");
+        }
+        darkModeQuery.addEventListener("change", (e) => {
+            // 用户手动指定过主题时不跟随系统
+            if (storedTheme === 'dark' || storedTheme === 'light') return;
+            e.matches ? classVal.add("dark") : classVal.remove("dark")
+        });
+    </script>
+</body>
+
+</html>
