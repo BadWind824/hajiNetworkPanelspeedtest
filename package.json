@@ -2,6 +2,9 @@
   "name": "network-panel",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",

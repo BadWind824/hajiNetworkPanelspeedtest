@@ -402,7 +402,6 @@ watch(isRunning, async (newState, oldState) => {
     if (state.maxUse && state.bytesUsed >= state.maxUse) {
       state.bytesUsed = 0;
     }
-    state.lastLogTime = new Date().getTime() / 1000;
     state.startUse = state.bytesUsed
     state.startTime = new Date().getTime() / 1000;
     state.recordUse = state.bytesUsed
