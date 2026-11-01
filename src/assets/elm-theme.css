@@ -1,0 +1,164 @@
+/* Glassmorphism base variables */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-hover: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+  --glass-blur: 20px;
+  --glass-radius: 20px;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --accent-blue: #007aff;
+  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+html.dark {
+  --glass-bg: rgba(44, 44, 46, 0.72);
+  --glass-bg-hover: rgba(58, 58, 60, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --text-primary: #f5f5f7;
+  --text-secondary: #98989d;
+  --el-text-color-regular: #e5e5ea;
+  --el-text-color-primary: #f5f5f7;
+  --el-color-white: rgb(28, 28, 30);
+  --el-mask-color: rgba(0, 0, 0, 0.6);
+  --el-bg-color: rgba(44, 44, 46, 0.72);
+  --el-bg-color-overlay: rgba(44, 44, 46, 0.8);
+}
+
+/* Element Plus glass overrides */
+.el-dialog {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--glass-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+.el-dialog__title {
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+}
+
+.el-dialog__body {
+  color: var(--text-primary) !important;
+}
+
+.el-button--primary {
+  background: var(--accent-gradient) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+}
+
+.el-button--primary:hover {
+  opacity: 0.9 !important;
+  transform: scale(1.02) !important;
+  transition: all 0.2s ease !important;
+}
+
+.el-select .el-input__wrapper {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+.el-slider__runway {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-radius: 10px !important;
+}
+
+.el-slider__bar {
+  background: var(--accent-gradient) !important;
+  border-radius: 10px !important;
+}
+
+.el-slider__button {
+  border: 2px solid #667eea !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.el-switch.is-checked .el-switch__core {
+  background: var(--accent-gradient) !important;
+  border-color: transparent !important;
+}
+
+.el-table {
+  background: transparent !important;
+}
+
+.el-table th.el-table__cell {
+  background: rgba(0, 0, 0, 0.02) !important;
+}
+
+.el-tag {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+}
+
+.el-alert {
+  border-radius: 12px !important;
+}
+
+.el-input__wrapper {
+  border-radius: 10px !important;
+}
+
+/* ==================== 测速地址下拉面板可读性优化 ==================== */
+/* 面板用接近不透明的实底，不再透出页面背景 */
+.el-select__popper.el-popper {
+  --el-bg-color-overlay: #ffffff;
+  background: var(--el-bg-color-overlay) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.el-select__popper.el-popper .el-popper__arrow::before {
+  background: var(--el-bg-color-overlay) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+.el-select-dropdown__item {
+  color: #303133;
+  opacity: 1 !important;
+}
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background: rgba(102, 126, 234, 0.1) !important;
+}
+.el-select-dropdown__item.selected {
+  color: #667eea;
+  font-weight: 600;
+}
+.el-select-dropdown__empty {
+  color: #6e6e73;
+}
+/* 深色模式：深色实底 + 浅色文字 */
+html.dark .el-select__popper.el-popper {
+  --el-bg-color-overlay: #2c2c2e;
+  background: var(--el-bg-color-overlay) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55) !important;
+}
+html.dark .el-select__popper.el-popper .el-popper__arrow::before {
+  background: var(--el-bg-color-overlay) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+html.dark .el-select-dropdown__item {
+  color: #e5e5ea;
+}
+html.dark .el-select-dropdown__item.hover,
+html.dark .el-select-dropdown__item:hover {
+  background: rgba(102, 126, 234, 0.25) !important;
+}
+html.dark .el-select-dropdown__item.selected {
+  color: #8fa4ff;
+}
+html.dark .el-select-dropdown__empty {
+  color: #98989d;
+}
